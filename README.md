@@ -15,6 +15,16 @@
 ./edge-brain-go2/edge_scripts/build_ws.sh`, 5) `ros2 run keyboard_input keyboard_input`, 6) `ros2 launch edge_bringup bringup.real.end2end.launch.py`, 7) `source ~/unitree_ros2/setup.sh`, 8) `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`, and 9) `ros2 launch edge_drl_student drl_student.end2end.launch.py.`
 6. Safe termination of robot: keyboard_input terminal: 2 > 2 > 1.
 
+## download and push 
+git clone -b real-dev git@github.com:edgebot/edge-brain-go2.git
+
+cd edge_ws
+cd src
+cd edge_brain_go2
+git add. 
+git commit -m "update ..."
+git push 
+
 
 
 
