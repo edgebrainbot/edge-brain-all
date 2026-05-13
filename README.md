@@ -30,15 +30,15 @@
 6. Terminal > `ros2 launch edge_drl_student drl_student.end2end.launch.py``
 7. Safe termination of robot running: Terminal keyboad: `2 > 2 > 1`
 
-## download and push 
-git clone -b real-dev git@github.com:edgebot/edge-brain-go2.git
-
-cd edge_ws
-cd src
-cd edge_brain_go2
-git add. 
-git commit -m "update ..."
-git push 
+## Download and Update
+1. Download: Terminal > `git clone -b real-dev git@github.com:edgebot/edge-brain-go2.git`
+2. Update: Route to the right path
+   * `cd edge_ws'
+   * `cd src'
+   * `cd edge_brain_go2`
+   * `git add.'
+   * `git commit -m "update ..."`
+   * `git push` 
 
 
 
