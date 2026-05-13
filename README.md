@@ -17,18 +17,18 @@
    * `git clone -b real-dev git@github.com:Charlescai123/edge-brain-go2.git` 
    * First use `cd` to route to the righ path where edge_scripts is included, then run `./edge_scripts/build_ws.sh`,
      
-## 💡 Robot: Development Operate 
-
-
-
-
-
-   * 5) `ros2 run keyboard_input keyboard_input`, 6) `ros2 launch edge_bringup bringup.real.end2end.launch.py`,7) keepboard: `2 > 2` > robot stand 
-
-
-
-7) `source ~/unitree_ros2/setup.sh`, 8) `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`, and 9) `ros2 launch edge_drl_student drl_student.end2end.launch.py.`
-7. Safe termination of robot: keyboard_input terminal: 2 > 2 > 1.
+## 💡 Robot: Communication Reset When Change Ethernet Line
+1. Log in Jetson > Netwrok > Ethernet Connected > Wired Setting > Wired (Setting logo) > IPv4 Input: Address: `192.168.123.10019` and Network: `255.255.255.0`, and choose `Mannual`
+2. Check Robot Moter's Communication: Terminal > `ping 192.168.123.161`
+ 
+## 💡 Robot: Development Run
+1. Terminal > `ros2 run keyboard_input keyboard_input`,
+2. Terminal > `ros2 launch edge_bringup bringup.real.end2end.launch.py`,
+3. Terminal keyboard: `2 > 2` > robot stand
+4. Terminal > `source ~/unitree_ros2/setup.sh`,
+5. Terminal > `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`, 
+6. Terminal > `ros2 launch edge_drl_student drl_student.end2end.launch.py``
+7. Safe termination of robot running: Terminal keyboad: `2 > 2 > 1`
 
 ## download and push 
 git clone -b real-dev git@github.com:edgebot/edge-brain-go2.git
