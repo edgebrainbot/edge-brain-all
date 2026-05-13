@@ -1,4 +1,4 @@
-# Edge-Brain-All
+# Edge Brain: All Basic Operations
 
 ## 💡 Robot: External Initial
 1. Download App: Unitree Go - Embodied AI
