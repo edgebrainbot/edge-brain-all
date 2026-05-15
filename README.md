@@ -42,7 +42,10 @@
    * `git commit -m "update ..."`
    * `git push` 
 
-
+## 💡 Other Common Commands
+1. Check graph: `rqt_graph`
+2. Check topic content: `ros2 topic echo /registered_scan`
+3. Check topic frequency: `ros2 topic hz /registered_scan `
 
 
 
