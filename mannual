@@ -1,0 +1,117 @@
+<!------------------------------------- Launch Command -------------------------------------->
+## Input cmd (press 2 to laydown and press 2 to standup and press 4 to run)
+  ```bash
+  ros2 run keyboard_input keyboard_input 
+  ```
+
+## Launch DRL Student
+  ```bash
+   ros2 launch edge_drl_student drl_student.launch.py
+  ```
+
+## Bringup (other components + Gazebo + Navigation)
+  ```bash
+  ros2 launch edge_bringup bringup.gazebo.launch.py
+  ```
+
+## Navigation
+  ```bash
+  ros2 launch edge_nav_bringup system_simulation_with_route_planner.launch.py
+  ```
+
+<!------------------------------------- Extra Command -------------------------------------->
+## Manual Reset
+  ```bash
+  ros2 service call /edge/manual_reset std_srvs/srv/Trigger
+  ```
+
+## Reboot the host machine
+  ```bash
+  sudo reboot
+  ```
+
+## Launch the Tensorboard
+  ```bash
+  tensorboard --logdir $HOME/edge_ws/src/edge-brain-go2 
+  ```
+
+
+## Compilation
+  ```bash
+  cd $HOME/edge_ws/src/edge-brain-go2 && ./edge_scripts/build_ws.sh
+  ```
+
+## Trigger Switching Statistics
+
+  ### 1). Inquery: 
+  ```bash
+  ros2 service call /edge/get_switching_stats edge_msgs/srv/GetSwitchingStats 
+  ```
+
+  ### ii). Clear: 
+  ```bash
+  ros2 service call /edge/reset_switching_stats edge_msgs/srv/ResetSwitchingStats
+  ```
+
+## Safety Patch Tuning
+
+  ### 1). Run LMI Test
+  ```bash
+  cd $HOME/edge_ws/src/edge-brain-go2/edge_locomotion/edge_phy_teacher/src/optimization/third_party/cvxpygen && python ddp_lmi_solver.py
+  ```
+
+  ### 2). Generate C code and deploy solver:
+  ```bash
+    cd $HOME/edge_ws/src/edge-brain-go2/edge_locomotion/edge_phy_teacher/src/optimization/third_party/cvxpygen && python build_solver.py
+  ```
+
+  ### 3). Print Synthesized Gain:
+  ```bash
+  ros2 run edge_phy_teacher control_gain_listener
+  ```
+
+<!------------------------------------- Particular File Path -------------------------------------->
+- **1. Safety condition + Reward + Physical Model (control gain):**
+> edge_common/edge_config/config/xxx.yaml
+
+- **2. DRL_Student**
+> edge_locomotion/edge_drl_student/edge_drl_student/drl_student_node.py
+
+- **3. Navigation**
+> edge_navigation >> planner/vision/utilities
+
+- **4. Emergency Stop (slowDownGain and safeDistanceThreshold)**
+> edge_navigation/planner/local_planner/src/pathFollower.cpp (around line 440)
+
+- **5. ACT-R Hyper-parameter**
+> edge_locomotion/edge_drl_student/memory/samplers/cognitive_sampler.py
+  
+- **6. Range and Reach Goal Threshold**
+> edge_control/platform/quadruped/edge+quadruped_controller/src/FSM/FSMtrotting.cpp
+
+- **7. Control residual and final action bledning weights**
+> edge_drl_student/runners/distributed_runner.py
+
+- **8. w cognition v.s. w/o cognition**
+> edge_locomotion/edge_drl_student/edge_drl_student/drl_student_node.py -> change keyword RUN
+
+- **9. Use different testing world scenes in Gazebo**
+> edge_bringup/launch/bringup.gaze.launch.py -> world_name_arg, default_value = simple_indoor.world or obstacle_course.world
+
+- **10. LMI Patch and Default Kp Kd** 
+> edge_locomotion/edge_phy_teacher/src/optimization/third_party/cvxpygen/ddp_lmi_solver.py
+> edge_config/config/physical_model.yaml/DEFAULT_KP and DEFAULT_KD
+
+
+<!------------------------------------- Misc -------------------------------------->
+- 1. Delete build+install+log if recompile errors occur
+
+- 2. next: (look-head distance,adjacentRange) safety conditions
+    1). why green point in global path has  misalignmnet with the goal (red). if no misalignment, good result! 
+    2). Reset at goal has an issue; can contiune but steop early 
+
+
+<!------------------------------------- Conclusions -------------------------------------->
+1) learning rate
+2) gains related ti yaw and yawrate
+3) the range of yaw rate in edge control 
