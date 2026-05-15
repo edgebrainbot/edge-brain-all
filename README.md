@@ -22,10 +22,10 @@
 2. Check Robot Moter's Communication: Terminal > `ping 192.168.123.161`
  
 ## 💡 Robot: Development Run
-1. Terminal > `ros2 run keyboard_input keyboard_input`,
-2. Terminal > `ros2 launch edge_bringup bringup.real.end2end.launch.py`,
+1. Terminal > `ros2 run keyboard_input keyboard_input`
+2. Terminal > `ros2 launch edge_bringup bringup.real.end2end.launch.py`
 3. Terminal keyboard: `2 > 2` > robot stand
-4. Terminal > `source ~/unitree_ros2/setup.sh` + `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`, 
+4. Terminal > `source ~/unitree_ros2/setup.sh` + `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`
 5. Terminal > `ros2 launch edge_drl_student drl_student.end2end.launch.py`
 6. Safe termination of robot running: Terminal keyboad: `2 > 2 > 1`
 
