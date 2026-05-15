@@ -12,10 +12,10 @@
 3. Anydesk > Enter Remote Address > 10.42.0.1 > Connect
 4. Password: edge1234 or edge123
 5. Terminal: Download and Compile
-   * `mkdir -p ~/edge_ws/src,`
+   * `mkdir -p ~/edge_ws/src`
    * `cd ~/edge_ws/src`
    * `git clone -b real-dev git@github.com:Charlescai123/edge-brain-go2.git` 
-   * First use `cd` to route to the righ path where edge_scripts is included, then run `./edge_scripts/build_ws.sh`,
+   * First use `cd` to route to the righ path where edge_scripts is included, then run `./edge_scripts/build_ws.sh`
      
 ## 💡 Robot: Communication Reset When Change Ethernet Line
 1. Log in Jetson > Netwrok > Ethernet Connected > Wired Setting > Wired (Setting logo) > IPv4 Input: Address: `192.168.123.10019` and Network: `255.255.255.0`, and choose `Mannual`
