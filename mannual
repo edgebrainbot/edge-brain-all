@@ -102,6 +102,9 @@
 > edge_locomotion/edge_phy_teacher/src/optimization/third_party/cvxpygen/ddp_lmi_solver.py
 > edge_config/config/physical_model.yaml/DEFAULT_KP and DEFAULT_KD
 
+- **11. Down Sampling for Point Liu** 
+> src/edge-brain-go2/edge_navigation/slam/point_lio_unilidar/launch/mapping_utlidar.launch
+
 
 <!------------------------------------- Misc -------------------------------------->
 - 1. Delete build+install+log if recompile errors occur
