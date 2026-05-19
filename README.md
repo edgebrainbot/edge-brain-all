@@ -30,7 +30,8 @@
 3. Terminal keyboard: `2 > 2` > robot stand
 4. Terminal > `source ~/unitree_ros2/setup.sh` + `ros2 launch edge_nav_bringup system_real_robot_with_route_planner.launch.py`
 5. Terminal > `ros2 launch edge_drl_student drl_student.end2end.launch.py`
-6. Safe termination of robot running: Terminal keyboad: `2 > 2 > 1`
+6. Terminal > keyboard > 4
+7. Safe termination of robot running: Terminal keyboad: `2 > 2 > 1`
 
 ## 💡 Download and Update
 1. Download: Terminal > `git clone -b real-dev git@github.com:edgebot/edge-brain-go2.git`
