@@ -22,9 +22,12 @@
 2. Check Robot Moter's Communication: Terminal > `ping 192.168.123.161`
  
 ## 💡 Robot: Development Run
-1. Check topic list: Terminal > `ros2 ropic list` 
-   * If no or only a few, Run `ros2 daemon stop`, then run `ros2 daemon start`, then run `source ~/unitree_ros2/setup.sh`
-   * Check `ros2 ropic list`, if still no full list, go to previous step, repeat, untill have full list. 
+1. Check topic list:
+   * `ros2 daemon stop`
+   * `source ~/unitree_ros2/setup.sh`
+   * `ros2 daemon start`
+   * `ros2 ropic list`
+   * If still no full list, repeat, untill have full list. 
 1. Terminal > `ros2 run keyboard_input keyboard_input`
 2. Terminal > `ros2 launch edge_bringup bringup.real.end2end.launch.py`
 3. Terminal keyboard: `2 > 2` > robot stand
