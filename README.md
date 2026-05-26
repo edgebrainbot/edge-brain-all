@@ -42,7 +42,7 @@
    * `cd edge_ws'
    * `cd src'
    * `cd edge_brain_go2`
-   * `git add.'
+   * `git add .'
    * `git commit -m "update ..."`
    * `git push` 
 
