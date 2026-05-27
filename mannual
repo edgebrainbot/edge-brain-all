@@ -118,3 +118,107 @@
 1) learning rate
 2) gains related ti yaw and yawrate
 3) the range of yaw rate in edge control 
+
+
+
+
+Others:
+
+#include <fstream>
+#include <iomanip>
+
+void terrainCloudHandler(
+    const sensor_msgs::msg::PointCloud2::ConstSharedPtr terrainCloud2)
+{
+  if (useTerrainAnalysis) {
+
+    terrainCloud->clear();
+
+    pcl::fromROSMsg(*terrainCloud2, *terrainCloud);
+
+    // =========================
+    // 保存原始点云为 TXT
+    // =========================
+
+    static bool saved_cloud = false;
+
+    if (!saved_cloud) {
+
+      std::ofstream outFile("/home/ubuntu/terrain_cloud.txt");
+
+      if (outFile.is_open()) {
+
+        outFile << std::fixed << std::setprecision(6);
+
+        for (size_t i = 0; i < terrainCloud->points.size(); ++i) {
+
+          const pcl::PointXYZI& point =
+              terrainCloud->points[i];
+
+          outFile
+              << point.x << " "
+              << point.y << " "
+              << point.z << " "
+              << point.intensity
+              << "\n";
+        }
+
+        outFile.close();
+
+        std::cout
+            << "Point cloud saved!"
+            << std::endl;
+
+        saved_cloud = true;
+      }
+      else {
+
+        std::cout
+            << "Failed to save point cloud!"
+            << std::endl;
+      }
+    }
+
+    // =========================
+    // 原始 terrain 分析
+    // =========================
+
+    pcl::PointXYZI point;
+
+    terrainCloudCrop->clear();
+
+    int terrainCloudSize = terrainCloud->points.size();
+
+    for (int i = 0; i < terrainCloudSize; i++) {
+
+      point = terrainCloud->points[i];
+
+      float pointX = point.x;
+      float pointY = point.y;
+      float pointZ = point.z;
+
+      float dis = sqrt(
+          (pointX - vehicleX) * (pointX - vehicleX) +
+          (pointY - vehicleY) * (pointY - vehicleY));
+
+      if (dis < adjacentRange &&
+          (point.intensity > obstacleHeightThre || useCost)) {
+
+        point.x = pointX;
+        point.y = pointY;
+        point.z = pointZ;
+
+        terrainCloudCrop->push_back(point);
+      }
+    }
+
+    terrainCloudDwz->clear();
+
+    terrainDwzFilter.setInputCloud(terrainCloudCrop);
+
+    terrainDwzFilter.filter(*terrainCloudDwz);
+
+    newTerrainCloud = true;
+  }
+}
+
